@@ -1,0 +1,35 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "required": ["Repository", "Leaks"],
+  "properties": {
+    "Repository": { "type": "string" },
+    "Leaks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["RuleID", "Description", "StartLine", "EndLine", "StartColumn", "EndColumn", "Match", "Secret", "File", "Commit", "Entropy", "Author", "Email", "Date", "Message", "Tags", "Fingerprint"],
+        "properties": {
+          "RuleID": { "type": "string" },
+          "Description": { "type": "string" },
+          "StartLine": { "type": "integer" },
+          "EndLine": { "type": "integer" },
+          "StartColumn": { "type": "integer" },
+          "EndColumn": { "type": "integer" },
+          "Match": { "type": "string" },
+          "Secret": { "type": "string" },
+          "File": { "type": "string" },
+          "SymlinkFile": { "type": "string" },
+          "Commit": { "type": "string" },
+          "Entropy": { "type": "number" },
+          "Author": { "type": "string" },
+          "Email": { "type": "string" },
+          "Date": { "type": "string", "format": "date-time" },
+          "Message": { "type": "string" },
+          "Tags": { "type": "array", "items": { "type": "string" } },
+          "Fingerprint": { "type": "string" }
+        }
+      }
+    }
+  }
+}

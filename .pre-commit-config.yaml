@@ -1,0 +1,93 @@
+---
+repos:
+  - repo: https://github.com/psf/black
+    rev: 25.1.0
+    hooks:
+      - id: black
+        args: ["src/"]
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: check-merge-conflict
+      - id: end-of-file-fixer
+      - id: check-docstring-first
+      - id: trailing-whitespace
+      - id: mixed-line-ending
+      - id: check-yaml
+      - id: fix-encoding-pragma
+  - repo: https://github.com/asottile/reorder_python_imports
+    rev: v3.15.0
+    hooks:
+      - id: reorder-python-imports
+  - repo: https://github.com/pre-commit/pygrep-hooks
+    rev: v1.10.0
+    hooks:
+      - id: python-no-eval
+      - id: python-use-type-annotations
+      - id: python-check-blanket-noqa
+  - repo: https://github.com/PyCQA/autoflake
+    rev: v2.3.1
+    hooks:
+      - id: autoflake
+        args:
+          - --in-place
+          - --recursive
+          - --expand-star-imports
+          - --remove-all-unused-imports
+          - --remove-duplicate-keys
+          - --remove-unused-variables
+  - repo: https://github.com/PyCQA/flake8
+    rev: 7.3.0
+    hooks:
+      - id: flake8
+        name: flake8
+        additional_dependencies:
+          - flake8-print
+          - flake8-implicit-str-concat
+          - flake8-annotations
+          - flake8-return
+          - flake8-print
+          - flake8-simplify
+          - flake8-tidy-imports
+          - flake8-bugbear
+          - flake8-comprehensions
+          - flake8-builtins
+          - flake8-docstrings
+          - pep8-naming
+  - repo: https://github.com/PyCQA/autoflake
+    rev: v2.3.1
+    hooks:
+      - id: autoflake
+  - repo: https://github.com/antonbabenko/pre-commit-terraform
+    rev: v1.99.5
+    hooks:
+      - id: terraform_fmt
+        args: [--args=-recursive]
+      - id: terraform_validate
+      - id: terraform_docs
+        args:
+          - "--args=--lockfile=false"
+      - id: terraform_tflint
+        args:
+          - "--args=--recursive"
+          - "--args=--only=terraform_deprecated_interpolation"
+          - "--args=--only=terraform_deprecated_index"
+          - "--args=--only=terraform_unused_declarations"
+          - "--args=--only=terraform_comment_syntax"
+          - "--args=--only=terraform_documented_outputs"
+          - "--args=--only=terraform_documented_variables"
+          - "--args=--only=terraform_typed_variables"
+          - "--args=--only=terraform_module_pinned_source"
+          - "--args=--only=terraform_naming_convention"
+          - "--args=--only=terraform_required_version"
+          - "--args=--only=terraform_required_providers"
+          - "--args=--only=terraform_standard_module_structure"
+          - "--args=--only=terraform_workspace_remote"
+  - repo: https://github.com/codespell-project/codespell
+    rev: v2.4.1
+    hooks:
+    - id: codespell
+  - repo: https://github.com/gitleaks/gitleaks
+    rev: v8.27.2
+    hooks:
+      - id: gitleaks
